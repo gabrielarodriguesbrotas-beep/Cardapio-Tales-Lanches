@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -40,10 +39,12 @@ text-decoration:none;
 font-size:1.1rem;
 border-radius:8px;
 cursor:pointer;
+transition:0.3s;
 }
 
 .btn:hover{
 background:#e76f00;
+transform:scale(1.05);
 }
 
 .cardapio-img{
@@ -52,6 +53,18 @@ max-width:500px;
 margin:20px auto;
 display:block;
 border-radius:10px;
+}
+
+/* ANIMAÇÃO */
+.animar{
+opacity:0;
+transform:translateY(20px);
+transition:all 0.5s ease;
+}
+
+.animar.show{
+opacity:1;
+transform:translateY(0);
 }
 
 footer{
@@ -78,16 +91,23 @@ font-size:0.9rem;
 <img src="Cardapio 2.jpeg" class="cardapio-img">
 <img src="Cardapio 1.jpeg" class="cardapio-img">
 
-<!-- BOTÃO -->
-
+<!-- BOTÃO NOVIDADE -->
 <div class="btn" onclick="toggleNovidade()">
-🔥 Novidade - Clique aqui para ver
+🔥 Novidade - Clique aqui
 </div>
 
-<!-- IMAGEM NOVA -->
-
-<div id="novidade" style="display:none;">
+<div id="novidade" class="animar" style="display:none;">
 <img src="Cardapio 3.jpeg" class="cardapio-img">
+</div>
+
+<!-- NOVO BOTÃO BATATA -->
+<div class="btn" onclick="toggleBatata()">
+🍟 Porções de Batata - Clique aqui
+</div>
+
+<!-- NOVA IMAGEM BATATA -->
+<div id="batata" class="animar" style="display:none;">
+<img src="Cardapio-batata.jpeg" class="cardapio-img">
 </div>
 
 <a href="https://wa.me/5514999060526" class="btn">
@@ -106,8 +126,22 @@ var x = document.getElementById("novidade");
 
 if(x.style.display === "none"){
 x.style.display = "block";
+setTimeout(()=> x.classList.add("show"), 10);
 }else{
-x.style.display = "none";
+x.classList.remove("show");
+setTimeout(()=> x.style.display = "none", 300);
+}
+}
+
+function toggleBatata(){
+var x = document.getElementById("batata");
+
+if(x.style.display === "none"){
+x.style.display = "block";
+setTimeout(()=> x.classList.add("show"), 10);
+}else{
+x.classList.remove("show");
+setTimeout(()=> x.style.display = "none", 300);
 }
 }
 </script>
